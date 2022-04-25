@@ -5,10 +5,10 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import ExpenseData from "./data/ExpenseData";
 
 const App = () => {
-    const [expenses, setExepnses] = useState(ExpenseData);
+    const [expenses, setExpenses] = useState(ExpenseData);
 
     const addExpenseHandler = expense => {
-        setExepnses(prevExpenses => {
+        setExpenses(prevExpenses => {
             return [expense, ...prevExpenses];
         });
     };
