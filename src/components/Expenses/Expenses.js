@@ -6,18 +6,26 @@ import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
 
 const Expenses = (props) => {
-    const [filteredYear, setFilteredYear] = useState('All');
+    const [filteredYear, setFilteredYear] = useState('Year');
+    const [filterSort, setFilterSort] = useState('Sort')
 
-    const filterChangeHandler = selectedYear => {
+    const filterChangeYearHandler = selectedYear => {
         setFilteredYear(selectedYear);
     };
 
-    const filteredExpenses = filteredYear === 'All' ? props.item : props.item.filter((x) => x.date.getFullYear().toString() === filteredYear);
+    const filterChangeSortHandler = selectSort => {
+        setFilterSort(selectSort);
+        console.log(selectSort);
+    };
+
+    const filteredExpenses = filteredYear === 'Year' ? props.item : props.item.filter((x) => x.date.getFullYear().toString() === filteredYear);
+    if(filterSort === 'Asc') filteredExpenses.sort((x,y) => x.date.getTime() - y.date.getTime());
+    if(filterSort === 'Desc') filteredExpenses.sort((x,y) => y.date.getTime() - x.date.getTime());
 
     return (
         <div>
             <Card className="expenses">
-                <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+                <ExpensesFilter selectedSort={filterSort} selectedYear={filteredYear} onChangeYearFilter={filterChangeYearHandler} onChangeSortFilter={filterChangeSortHandler} />
 
                 {filteredExpenses.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />)}
 
