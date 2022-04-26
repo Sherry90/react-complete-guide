@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
@@ -15,10 +15,10 @@ const App = () => {
 
     return (
         <div>
-            <NewExpense onAddExpense={addExpenseHandler} />
+            <NewExpense onAddExpense={addExpenseHandler}/>
             <Expenses item={expenses}/>
         </div>
     );
-}
+};
 
 export default App;
