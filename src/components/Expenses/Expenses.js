@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
 import './Expenses.css';
 
 const Expenses = (props) => {
@@ -21,17 +21,11 @@ const Expenses = (props) => {
     if(filterSort === 'Asc') filteredExpenses.sort((x,y) => x.date.getTime() - y.date.getTime());
     if(filterSort === 'Desc') filteredExpenses.sort((x,y) => y.date.getTime() - x.date.getTime());
 
-    let expensesContent = <p>No Expenses found.</p>;
-
-    if(filteredExpenses.length){
-        expensesContent = filteredExpenses.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />);
-    }
-
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter selectedSort={filterSort} selectedYear={filteredYear} onChangeYearFilter={filterChangeYearHandler} onChangeSortFilter={filterChangeSortHandler} />
-                {expensesContent}
+                <ExpensesList items={filteredExpenses} />
             </Card>
         </div>
     );
