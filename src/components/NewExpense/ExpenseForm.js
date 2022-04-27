@@ -14,7 +14,6 @@ const ExpenseForm = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log(event.target.button);
 
         if(enteredTitle === '' || enteredAmount === '' || enteredDate === '') return;
 
